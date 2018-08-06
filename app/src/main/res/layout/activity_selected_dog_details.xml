@@ -8,16 +8,14 @@
     android:orientation="vertical"
     tools:context=".SelectedDogDetailsActivity">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_main"/>
+
     <TextView
         android:id="@+id/dog_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"/>
-
-    <ImageView
-        android:id="@+id/dog_image"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"/>
 
 </LinearLayout>

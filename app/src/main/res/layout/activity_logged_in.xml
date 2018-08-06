@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:orientation="vertical"
-tools:context=".LoggedInActivity">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".LoggedInActivity">
 
     <include
         android:id="@+id/toolbar"
@@ -18,13 +18,11 @@ tools:context=".LoggedInActivity">
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <android.support.v7.widget.RecyclerView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/dog_recycle_logged"
+        <fragment
+            android:id="@+id/dog_fragment_logged"
+            class="com.hfad.dogtinder.LoggedInFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="vertical" />
+            android:layout_height="match_parent" />
     </LinearLayout>
-
 
 </LinearLayout>
