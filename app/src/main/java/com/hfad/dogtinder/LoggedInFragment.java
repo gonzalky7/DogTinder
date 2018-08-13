@@ -36,7 +36,7 @@ public class LoggedInFragment extends Fragment {
 
 
         //Calling GetData() method from the Parent Activity LoggedInActivity.java
-        String DogName = ((LoggedInActivity)getContext()).GetData();
+        final String DogName = ((LoggedInActivity)getContext()).GetData();
 
 
         // Inflate the layout for this fragment
@@ -52,7 +52,7 @@ public class LoggedInFragment extends Fragment {
             dogNamesList.add(Dog.dogs[i].getName());
         }
 
-        String[] dogNames = dogNamesList.toArray(new String[dogNamesList.size()]);
+        final String[] dogNames = dogNamesList.toArray(new String[dogNamesList.size()]);
         List<Integer> dogImagesList = new ArrayList<>();
 
         for (int i = 0; i < Dog.dogs.length; i++) {
@@ -62,23 +62,44 @@ public class LoggedInFragment extends Fragment {
             dogImagesList.add(Dog.dogs[i].getImageResourceId());
         }
 
-        int[] dogImages = ArrayUtils.toPrimitive(dogImagesList.toArray(new Integer[0]));
+        final int[] dogImages = ArrayUtils.toPrimitive(dogImagesList.toArray(new Integer[0]));
 
         DogImagesAdapter adapter = new DogImagesAdapter(dogNames, dogImages);
         mRecyclerView.setAdapter(adapter);
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
         mRecyclerView.setLayoutManager(layoutManager);
 
-        //this sends the chosen dog's id to the SelecteDogDetailsActivity
+        //this sends the chosen dog's id to the SelectDogDetailsActivity
         adapter.setListener(new DogImagesAdapter.Listener() {
             @Override
             public void onClick(int position) {
+                //SEARCH LIST FOR THE NAME....
+                Dog dog = searchDogList(dogNames, dogImages, position);
+
                 Intent intent = new Intent(getActivity(), SelectedDogDetailsActivity.class);
-                intent.putExtra(SelectedDogDetailsActivity.EXTRA_DOG_SELECTED_ID, position);
+                intent.putExtra(SelectedDogDetailsActivity.EXTRA_DOG_SELECTED_NAME, dog.getName());
+                intent.putExtra(SelectedDogDetailsActivity.EXTRA_DOG_SELECTED_IMAGE , dog.getImageResourceId());
+                intent.putExtra(SelectedDogDetailsActivity.EXTRA_DOG_SELECTED_DESCRIPTION , dog.getDescription());
+                intent.putExtra(SelectedDogDetailsActivity.EXTRA_DOG_LOGGED_IN_NAME, DogName);
                 getActivity().startActivity(intent);
             }
         });
         return mRecyclerView;
     }
 
+    public Dog searchDogList(String [] strarray,int [] dogImages, int position) {
+        String name = strarray[position];
+        int imageResourceId = dogImages[position];
+        String des = null;
+
+        for (int i = 0; i < Dog.dogs.length; i++) {
+            if (name == Dog.dogs[i].getName()){
+                des = Dog.dogs[i].getDescription();
+                break;
+            }
+        }
+        Dog dog = new Dog( name, des, imageResourceId);
+
+        return dog;
+    }
 }

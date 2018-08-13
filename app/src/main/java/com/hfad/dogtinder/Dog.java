@@ -13,13 +13,8 @@ public class Dog {
             new Dog("Tessi", "So sweet", R.drawable.tessi)
     };
 
-    public static final Dog[] dogs1 = {
-            new Dog("Ben", "I love cake", R.drawable.ben),
-            new Dog("Bosko", "So Handsome", R.drawable.bosko),
-            new Dog("Tessi", "So sweet", R.drawable.tessi)
-    };
 
-    private Dog(String name, String description, int imageResourceId) {
+    public Dog(String name, String description, int imageResourceId) {
         this.name = name;
         this.description = description;
         this.imageResourceId = imageResourceId;

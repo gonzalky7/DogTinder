@@ -1,5 +1,6 @@
 package com.hfad.dogtinder;
 
+import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,9 +14,10 @@ import org.w3c.dom.Text;
 public class SelectedDogDetailsActivity extends AppCompatActivity {
 
 
-    public static final String EXTRA_DOG_SELECTED_ID = "dogId";
-
-    public static final String EXTRA_DOG_LOGGED_IN_ID = "dogAlreadyLoggedin";
+    public static final String EXTRA_DOG_SELECTED_NAME = "dogId";
+    public static final String EXTRA_DOG_SELECTED_IMAGE = "dogImage";
+    public static final String EXTRA_DOG_SELECTED_DESCRIPTION = "dogDESC";
+    public static final String EXTRA_DOG_LOGGED_IN_NAME = "dogAlreadyLoggedin";
 
     private static final String TAG = "TAGActivity";
 
@@ -24,35 +26,30 @@ public class SelectedDogDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selected_dog_details);
 
-        String dogLoggedIn = (String) getIntent().getExtras().get(EXTRA_DOG_LOGGED_IN_ID);
-        Log.d(TAG, dogLoggedIn);
+        //Getting the name of the dog already logged in
+        String dogLogged = (String) getIntent().getExtras().get(EXTRA_DOG_LOGGED_IN_NAME);
 
         //Display details of chosen dog
-        int dogID = (Integer) getIntent().getExtras().get(EXTRA_DOG_SELECTED_ID);
-        String dogName = Dog.dogs[dogID].getName();
+        String dogName = (String) getIntent().getExtras().get(EXTRA_DOG_SELECTED_NAME);
+        int dogImage = (Integer)getIntent().getExtras().get(EXTRA_DOG_SELECTED_IMAGE);
+        String dogDescription = (String) getIntent().getExtras().get(EXTRA_DOG_SELECTED_DESCRIPTION);
 
-        Log.d(TAG,dogName);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        TextView mTitle = (TextView) toolbar.findViewById(R.id.logged_in_user);
+        mTitle.setText(dogLogged);
         setSupportActionBar(toolbar);
 
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        TextView mTitle = (TextView) toolbar.findViewById(R.id.logged_in_user);
-//        mTitle.setText("Figure out how to keep dog logged in");
-//        setSupportActionBar(toolbar);
-//
-//
-//        //Display details of chosen dog
-//        int dogID = (Integer) getIntent().getExtras().get(EXTRA_DOG_SELECTED_ID);
-//        String dogName = Dog.dogs[dogID].getName();
-//
-//        TextView textView = (TextView) findViewById(R.id.dog_text);
-//        textView.setText(dogName);
-//
-//        int dogImage = Dog.dogs[dogID].getImageResourceId();
-//        ImageView imageView =(ImageView) findViewById(R.id.dog_image);
-//        imageView.setImageDrawable(ContextCompat.getDrawable(this, dogImage));
-//        imageView.setContentDescription(dogName);
+
+        TextView textView = (TextView) findViewById(R.id.dog_text);
+        textView.setText(dogName);
+
+        ImageView imageView =(ImageView) findViewById(R.id.dog_image);
+        imageView.setImageDrawable(ContextCompat.getDrawable(this, dogImage));
+        imageView.setContentDescription(dogName);
+
+        TextView textView1 = findViewById(R.id.description);
+        textView1.setText(dogDescription);
 
     }
 }
