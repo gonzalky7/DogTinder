@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <include
+    android:id="@+id/toolbar"
+    layout="@layout/toolbar_main" />
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+
+            <ImageView
+                android:id="@+id/dogLoggedIn"
+                android:layout_width="match_parent"
+                android:layout_height="230dp"
+                android:layout_gravity="start"
+                android:adjustViewBounds="false"
+                android:scaleType="centerCrop"
+                android:cropToPadding="false"
+                android:contentDescription="@string/image_of_logged_in_dog" />
+
+            <ImageView
+                android:id="@+id/dogLiked"
+                android:layout_width="match_parent"
+                android:layout_height="230dp"
+                android:layout_gravity="end"
+                android:adjustViewBounds="false"
+                android:contentDescription="@string/image_of_matched_dog"
+                android:cropToPadding="false"
+                android:scaleType="centerCrop" />
+
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

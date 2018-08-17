@@ -17,7 +17,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoggedInActivity" />
-        <activity android:name=".SelectedDogDetailsActivity"></activity>
+        <activity android:name=".SelectedDogDetailsActivity" />
+        <activity android:name=".LikeActivity"
+            android:label="@string/liked_dog">
+        </activity>
     </application>
 
 </manifest>

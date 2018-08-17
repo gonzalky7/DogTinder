@@ -98,7 +98,7 @@ public class LoggedInFragment extends Fragment {
                 break;
             }
         }
-        Dog dog = new Dog( name, des, imageResourceId);
+        Dog dog = new Dog( name, des, imageResourceId, null);
 
         return dog;
     }

@@ -4,4 +4,10 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="dog_picture">Dog picture</string>
+    <string name="liked_dog">Match!</string>
+    <string name="liked_dog_title">Like Dog</string>
+    <string name="disliked_dog_title">Disliked Dog</string>
+    <string name="message_dog_title">Message Dog</string>
+    <string name="image_of_logged_in_dog">Image of Logged in Dog</string>
+    <string name="image_of_matched_dog">Image of matched dog</string>
 </resources>
