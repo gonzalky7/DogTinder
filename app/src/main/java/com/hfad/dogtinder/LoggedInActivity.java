@@ -24,7 +24,6 @@ public class LoggedInActivity extends AppCompatActivity {
     public static final String EXTRA_DOG_LOGGED_IN_ID = "dogId";
     private static final String TAG = "MyActivity";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

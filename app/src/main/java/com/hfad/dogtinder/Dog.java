@@ -6,11 +6,12 @@ public class Dog {
     private String description;
     private String [] dogLikes;
 
+
     static String [] dogNamesPeanut = {"Tessi","Ben","Mrs. Moppins"};
-    static String [] dogNamesMoppins = {"Tessi","Ben","Bokso"};
+    static String [] dogNamesMoppins = {"Tessi","Ben","Bokso","Peanut"};
     static String [] dogNamesBen = {"Tessi","Peanut"};
     static String [] dogNamesBosko= {"Peanut","Ben"};
-    static String [] dogNamesTessi = {"Bosko","Ben","Peanut"};
+    static String [] dogNamesTessi = {"Bosko","Ben"};
 
     public static final Dog[] dogs = {
             new Dog("Peanut", "Totally cute", R.drawable.peanut, dogNamesPeanut),

@@ -27,12 +27,12 @@ public class LikeActivity extends AppCompatActivity {
         String dogNameMatchOrNot = (String) getIntent().getExtras().get(EXTRA_DOG_MATCH_OR_NOT);
         String dogLoggedIn = (String) getIntent().getExtras().get(EXTRA_DOG_LOGGED_IN_NAME);
 
-        //Chosen dog will search its array of liked dogs. If the dog who liked is in that array then there is a match,
-        //if not go back to loggedInFragment.
+        //Once logged in dog likes a dog. Then need to search the selected dogs dogName array and search if
+        //logged in dog was like by selected dog as well
         listImageResources = (searchDogListForMatch(dogNameMatchOrNot, dogLoggedIn));
-
+        Intent intent = new Intent(LikeActivity.this, LoggedInActivity.class);
         if(listImageResources.isEmpty()) {
-            Intent intent = new Intent(this, LoggedInActivity.class);
+            //This is not working!!!!!
             startActivity(intent);
         }else {
             //set pictures and value
@@ -43,29 +43,33 @@ public class LikeActivity extends AppCompatActivity {
             imageView1.setImageResource(listImageResources.get(1));
 
         }
-
     }
-
-
+    //Search name of liked dog and then search its liked dog names array to search for logged in dog
+    //Expensive method...in the future this would be handled in the database
     public List<Integer> searchDogListForMatch (String nameOfLikedDog, String dogLoggedIn){
         List<Integer> list = new ArrayList<>();
-        boolean flag1 = false;
+
         for (int i = 0; i < Dog.dogs.length; i++) {
-            if (dogLoggedIn.equals(Dog.dogs[i].getName())) {
+            if (nameOfLikedDog.equals(Dog.dogs[i].getName())) {
+
+                int lengthOfDogLiked = Dog.dogs[i].getDogLikes().length;
+
                 for (int j = 0; j < Dog.dogs[i].getDogLikes().length; j++) {
-                    if (nameOfLikedDog.equals(Dog.dogs[i].getDogLikes()[j])) {
+                    String nameOfDogsLiked = Dog.dogs[i].getDogLikes()[j];
+
+                    if (dogLoggedIn.equals(Dog.dogs[i].getDogLikes()[j])) {
+                        //add image resource for liked dog
                         list.add(Dog.dogs[i].getImageResourceId());
-                        flag1 = true;
-                        continue;
+                        //add image resource for logged in dog
+                        for (int k = 0; k < Dog.dogs.length; k++) {
+                            if (dogLoggedIn.equals(Dog.dogs[k].getName())) {
+                                list.add(Dog.dogs[k].getImageResourceId());
+                            }
+                        }
                     }
+
                 }
-            }
-        }
-        if(flag1) {
-            for (int i = 0; i < Dog.dogs.length; i++) {
-                if (nameOfLikedDog.equals(Dog.dogs[i].getName())) {
-                    list.add(Dog.dogs[i].getImageResourceId());
-                }
+               break;
             }
         }
         return list;
